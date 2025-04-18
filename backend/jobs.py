@@ -1,22 +1,51 @@
 from apify_client import ApifyClient
+from fastapi import FastAPI, Body
+from pydantic import BaseModel
+from typing import List, Dict, Any
+from fastapi.middleware.cors import CORSMiddleware
 
 # Initialize the ApifyClient with your API token
 client = ApifyClient("apify_api_U1UYuCx46PyRSPFWvdugKAdMfOpYxc2NLRgX")
 
-# Prepare the Actor input
-run_input = {
-    "position": "software engineer intern",
-    "country": "US",
-    "location": "New York",
-    "maxItems": 10,
-    # "parseCompanyDetails": True,
-    "saveOnlyUniqueItems": True,
-    # "followApplyRedirects": True,
-}
+# Create FastAPI app
+app = FastAPI()
 
-# Run the Actor and wait for it to finish
-run = client.actor("hMvNSpz3JnHgl5jkh").call(run_input=run_input)
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
-# Fetch and print Actor results from the run's dataset (if there are any)
-for item in client.dataset(run["defaultDatasetId"]).iterate_items():
-    print(item)
+class JobSearch(BaseModel):
+    search: str
+
+def get_jobs(search: str):
+    run_input = {
+        "position": search,
+        "country": "US",
+        "location": "New York",
+        "maxItems": 10,
+        # "parseCompanyDetails": True,
+        "saveOnlyUniqueItems": True,
+        # "followApplyRedirects": True,
+    }
+    run = client.actor("hMvNSpz3JnHgl5jkh").call(run_input=run_input)
+    return client.dataset(run["defaultDatasetId"]).iterate_items()
+
+@app.post("/jobs")
+async def jobs_endpoint(job_search: JobSearch = Body(...)):
+    # Get the search parameter from the request body
+    search = job_search.search
+    
+    # Use the existing get_jobs function
+    jobs = list(get_jobs(search))
+    
+    return {"jobs": jobs}
+
+# For running the application with uvicorn
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=5000)
