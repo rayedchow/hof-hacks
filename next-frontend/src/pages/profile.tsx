@@ -12,6 +12,8 @@ const CACHE_EXPIRATION = 1000 * 60 * 60 * 24 * 7; // 7 days in milliseconds
 // Type for the cached data structure
 interface CacheData {
   profile: {
+    firstName: string;
+    lastName: string;
     email: string;
     phone: string;
     github: string;
@@ -40,6 +42,8 @@ interface CacheData {
 const Profile = () => {
   // Profile state
   const [profile, setProfile] = useState({
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
     github: '',
@@ -54,45 +58,7 @@ const Profile = () => {
     country: ''
   });
   
-  // Check for GitHub OAuth callback
-  useEffect(() => {
-    // This would normally be handled by your backend redirect
-    // This is just a simplified example of how the flow would work
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
-    const state = urlParams.get('state');
-    const storedState = localStorage.getItem('github_oauth_state');
-    
-    // If we have a code and state from GitHub OAuth callback
-    if (code && state && state === storedState) {
-      // In a real implementation, your backend would handle this exchange and redirect back with user info
-      // For this demo, we'll simulate getting the username after OAuth
-      const pendingProfileJson = localStorage.getItem('github_oauth_pending_profile');
-      if (pendingProfileJson) {
-        try {
-          const pendingProfile = JSON.parse(pendingProfileJson);
-          // Simulate a successful GitHub OAuth connection
-          // In reality, your backend would exchange the code for a token and get user info
-          const simulatedUsername = 'github-user-' + Math.floor(Math.random() * 1000);
-          
-          // Update the profile with OAuth-connected GitHub account
-          setProfile({
-            ...pendingProfile,
-            github: `oauth:${simulatedUsername}` // Prefix with 'oauth:' to indicate OAuth connection
-          });
-          
-          // Clear the pending profile and state
-          localStorage.removeItem('github_oauth_pending_profile');
-          localStorage.removeItem('github_oauth_state');
-          
-          // Remove the query parameters from the URL
-          window.history.replaceState({}, document.title, window.location.pathname);
-        } catch (error) {
-          console.error('Error processing OAuth callback:', error);
-        }
-      }
-    }
-  }, []);
+  // No direct OAuth callback handling here - now handled by the GitHub page
 
   // Load cached profile data on component mount
   useEffect(() => {
@@ -269,9 +235,40 @@ const Profile = () => {
           )}
         </div>
         
-        {/* Contact Information */}
-        <div className="space-y-4">
-          <h2 className="text-xl font-semibold">Contact Information</h2>
+        {/* Personal Information section */}
+        <div className="space-y-6">
+          <h2 className="text-xl font-semibold flex items-center text-white">
+            <FileText className="mr-2" /> Personal Information
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className="flex items-center text-sm font-medium text-gray-300">
+                First Name
+              </label>
+              <Input 
+                name="firstName"
+                value={profile.firstName}
+                onChange={handleInputChange}
+                className="bg-automate-dark-gray border-gray-700 text-white"
+                placeholder="John"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <label className="flex items-center text-sm font-medium text-gray-300">
+                Last Name
+              </label>
+              <Input 
+                name="lastName"
+                value={profile.lastName}
+                onChange={handleInputChange}
+                className="bg-automate-dark-gray border-gray-700 text-white"
+                placeholder="Doe"
+              />
+            </div>
+          </div>
+          
           <div className="space-y-2">
             <label className="flex items-center text-sm font-medium text-gray-300">
               <Mail className="mr-2 h-4 w-4" /> Email
@@ -388,25 +385,21 @@ const Profile = () => {
               />
               <Button 
                 onClick={() => {
-                  // GitHub OAuth URL with your client ID
-                  // In a real app, you should register your own OAuth app on GitHub
-                  const GITHUB_CLIENT_ID = 'your-client-id-here';
-                  // This should point to your backend endpoint that handles the OAuth code
-                  const REDIRECT_URI = `${window.location.origin}/api/auth/github/callback`;
-                  // Generate a random state to prevent CSRF attacks
-                  const state = Math.random().toString(36).substring(2);
-                  // Store the state in localStorage to verify when the user returns
-                  localStorage.setItem('github_oauth_state', state);
+                  // GitHub OAuth URL with client ID
+                  const CLIENT_ID = 'Ov23livl0mmy0KYKZs28';
                   // Store the current profile data so we don't lose it during redirect
                   localStorage.setItem('github_oauth_pending_profile', JSON.stringify(profile));
-                  // Redirect to GitHub OAuth authorization endpoint
-                  window.location.href = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&state=${state}&scope=read:user,user:email`;
+                  // Generate a random state to prevent CSRF attacks
+                  const state = Math.random().toString(36).substring(2);
+                  localStorage.setItem('github_oauth_state', state);
+                  // Redirect to GitHub OAuth authorization endpoint with required scopes
+                  window.location.href = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=repo,user`;
                 }}
                 className="ml-2 bg-[#24292e] hover:bg-[#1b1f23] text-white"
                 disabled={profile.github.startsWith('oauth:')}
               >
                 <Github className="mr-2 h-4 w-4" />
-                Connect
+                Connect with GitHub
               </Button>
             </div>
             {profile.github.startsWith('oauth:') && (

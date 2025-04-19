@@ -1,9 +1,11 @@
 
 import os
 import time
+import random
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys # Import Keys
+from selenium.webdriver.common.keys import Keys 
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import Select, WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import (
@@ -15,27 +17,108 @@ from selenium.common.exceptions import (
     InvalidArgumentException
 )
 
+def move_mouse_to_element(driver, element, offset_x=None, offset_y=None):
+    """Move the mouse to an element in a human-like way with slight randomization."""
+    try:
+        actions = ActionChains(driver)
+        
+        # Get element size to calculate potential random offset within the element
+        if offset_x is None and offset_y is None:
+            # Random offset within the element (to avoid always clicking the exact center)
+            size = element.size
+            width, height = size['width'], size['height']
+            offset_x = random.randint(-width//4, width//4) if width > 10 else 0
+            offset_y = random.randint(-height//4, height//4) if height > 10 else 0
+        
+        # Move to element with random offset
+        actions.move_to_element_with_offset(element, offset_x, offset_y)
+        actions.pause(random.uniform(0.1, 0.3))  # Pause like a human would
+        actions.perform()
+        
+        # Add a slight delay after movement
+        time.sleep(random.uniform(0.2, 0.5))
+        return True
+    except Exception as e:
+        print(f"  • Error moving mouse: {e}")
+        return False
+
+def human_like_typing(driver, element, text):
+    """Type text with random delays between keystrokes, like a human would."""
+    try:
+        # Random typing speeds to appear more human
+        for char in text:
+            element.send_keys(char)
+            # Randomized delay between keystrokes (30-100ms)
+            time.sleep(random.uniform(0.03, 0.1))
+            
+        # Sometimes humans pause slightly after typing
+        time.sleep(random.uniform(0.2, 0.5))
+        return True
+    except Exception as e:
+        print(f"  • Error during human-like typing: {e}")
+        return False
+
 def safe_send_keys(driver, element, text, element_name="field"):
-    """Safely sends keys to an element after waiting for it to be ready."""
+    """Safely sends keys to an element with human-like behavior."""
+    if not text:  # Skip if no text provided
+        print(f"  • No value provided for '{element_name}', skipping.")
+        return
+        
     try:
         # Wait for the element to be visible and enabled
-        WebDriverWait(driver, 5).until(
-             EC.visibility_of(element)
-        )
-        # Wait for the element to be clickable (useful for inputs that might be overlaid)
-        WebDriverWait(driver, 5).until(
-             EC.element_to_be_clickable(element)
-        )
-        element.clear()
-        element.send_keys(text)
-        print(f"  • Successfully filled '{element_name}'.")
+        WebDriverWait(driver, 5).until(EC.visibility_of(element))
+        # Wait for the element to be clickable
+        WebDriverWait(driver, 5).until(EC.element_to_be_clickable(element))
+        
+        # 1. Move mouse to element naturally before interacting
+        move_mouse_to_element(driver, element)
+        
+        # 2. Click on the element with a natural pause
+        element.click()
+        time.sleep(random.uniform(0.2, 0.4))
+        
+        # 3. Clear the field (with slight delay)
+        element.clear()  
+        time.sleep(random.uniform(0.1, 0.3))
+        
+        # 4. Type text with human-like timing
+        human_like_typing(driver, element, text)
+        
+        # 5. Sometimes press Tab after typing (like humans often do)
+        if random.random() < 0.7:  # 70% chance
+            time.sleep(random.uniform(0.3, 0.6))
+            element.send_keys(Keys.TAB)
+            
+        print(f"  • Successfully filled '{element_name}' with human-like typing.")
     except (TimeoutException, ElementClickInterceptedException):
-         print(f"  • Warning: {element_name} not visible or clickable within timeout, skipping.")
+        print(f"  • Warning: {element_name} not visible or clickable within timeout, skipping.")
     except StaleElementReferenceException:
         print(f"  • Warning: {element_name} became stale, skipping.")
     except Exception as e:
         print(f"  • Error filling '{element_name}': {e}")
 
+def scroll_to_element(driver, element):
+    """Scroll to an element with natural, human-like behavior."""
+    try:
+        # Get the element's location
+        location = element.location
+        
+        # Calculate a slightly randomized scroll target position
+        scroll_top = location['y'] - random.randint(100, 200)  # Scroll to show some context above element
+        
+        # Execute a smooth scroll with slight randomization
+        driver.execute_script(
+            "window.scrollTo({top: arguments[0], left: 0, behavior: 'smooth'});", 
+            scroll_top
+        )
+        
+        # Add a random delay as if a human is looking at the page
+        time.sleep(random.uniform(0.5, 1.2))
+        return True
+    except Exception as e:
+        print(f"  • Error scrolling to element: {e}")
+        return False
+        
 def get_element_label(driver, element, form=None):
     """Attempts to find the label or descriptive text for a given element."""
     element_id = element.get_attribute("id")

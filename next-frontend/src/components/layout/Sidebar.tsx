@@ -35,7 +35,6 @@ const NavItem = ({ to, icon: Icon, label, shortcut, collapsed, onClick }: NavIte
       {!collapsed && (
         <>
           <span className="ml-3 flex-1">{label}</span>
-          {shortcut && <span className="text-xs text-gray-400">{shortcut}</span>}
         </>
       )}
     </Link>

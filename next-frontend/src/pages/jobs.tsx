@@ -1,16 +1,21 @@
 
 import React, { useState, useEffect } from 'react';
-import { Search, MapPin, Briefcase, Building, CreditCard } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { Search, MapPin, Briefcase, Building, CreditCard, Check } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "@/components/ui/use-toast";
 import AppLayout from '@/components/layout/AppLayout';
 
 // Job type for employment opportunities
 interface Job {
   company: string;
   description: string;
+  descriptionHTML?: string;
   externalApplyLink: string;
   id: string;
   isExpired: boolean;
@@ -29,9 +34,12 @@ interface Job {
     position: string;
   }
   url: string;
+  
 }
 
 const Jobs = () => {
+  const router = useRouter();
+  
   // Job listings state
   const [jobs, setJobs] = useState<Job[]>([]);
   
@@ -42,6 +50,9 @@ const Jobs = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
+  
+  // Multi-select state for jobs
+  const [selectedJobs, setSelectedJobs] = useState<Set<string>>(new Set());
   
   // Fetch jobs data when component mounts
   useEffect(() => {
@@ -64,11 +75,8 @@ const Jobs = () => {
         if (currentTime - cacheTime < cacheExpirationTime) {
           try {
             const parsedJobs = JSON.parse(cachedJobsData);
-            // Remove descriptionHTML property from each job in the array
-            const cleanedJobs = parsedJobs.map((job: any) => {
-              const { descriptionHTML, ...rest } = job;
-              return rest;
-            });
+            // Use the cached jobs data directly
+            const cleanedJobs = parsedJobs;
             setJobs(cleanedJobs);
             setIsLoading(false);
             console.log('Using cached jobs data');
@@ -98,11 +106,8 @@ const Jobs = () => {
         
         const data = await response.json();
         
-        // Remove descriptionHTML property from each job before updating state
-        const cleanedJobs: Job[] = data.map((job: any) => {
-          const { descriptionHTML, ...rest } = job;
-          return rest;
-        });
+        // Save the complete job data including descriptionHTML
+        const cleanedJobs: Job[] = data;
         
         // Update state with the cleaned data
         setJobs(cleanedJobs);
@@ -124,10 +129,38 @@ const Jobs = () => {
     fetchJobs();
   }, []);
   
-  // Apply for job function
-  const handleApply = (jobId: string) => {
-    console.log(`Applied for job ID: ${jobId}`);
-    // Here you would handle the application process
+  // Toggle job selection
+  const toggleJobSelection = (jobId: string) => {
+    setSelectedJobs(prev => {
+      const newSelection = new Set(prev);
+      if (newSelection.has(jobId)) {
+        newSelection.delete(jobId);
+      } else {
+        newSelection.add(jobId);
+      }
+      return newSelection;
+    });
+  };
+  
+  // Navigate to applications tracking page with selected jobs
+  const handleApplySelected = () => {
+    if (selectedJobs.size === 0) {
+      toast({
+        title: "No jobs selected",
+        description: "Please select at least one job to apply.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // Convert Set to comma-separated string for URL
+    const selectedJobIds = Array.from(selectedJobs).join(',');
+    
+    // Navigate to applications page with job IDs as query parameter
+    router.push({
+      pathname: '/applications',
+      query: { jobIds: selectedJobIds }
+    });
   };
   
   // Filter jobs based on search term and filters
@@ -146,12 +179,18 @@ const Jobs = () => {
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-semibold">Jobs</h1>
-        <Button 
-          className="bg-automate-purple hover:bg-automate-purple/90 text-white"
-          onClick={() => console.log("Create new job listing")}
-        >
-          Create New Job
-        </Button>
+        <div className="flex items-center gap-2">
+          <div className="text-sm text-gray-400">
+            {selectedJobs.size} job{selectedJobs.size !== 1 ? 's' : ''} selected
+          </div>
+          <Button 
+            className="bg-automate-purple hover:bg-automate-purple/90 text-white"
+            onClick={handleApplySelected}
+            disabled={selectedJobs.size === 0}
+          >
+            Apply to Selected
+          </Button>
+        </div>
       </div>
       
       {/* Search and filters */}
@@ -214,9 +253,22 @@ const Jobs = () => {
       {/* Job listings */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredJobs.map((job) => (
-          <Card key={job.id} className="bg-automate-dark-gray border-gray-800 shadow-lg hover:shadow-xl transition-shadow">
+          <Card 
+            key={job.id} 
+            className={`bg-automate-dark-gray border-gray-800 shadow-lg hover:shadow-xl transition-shadow relative ${
+              selectedJobs.has(job.id) ? 'ring-2 ring-automate-purple' : ''
+            }`}
+          >
+            <div className="absolute top-4 right-4 z-10">
+              <Checkbox
+                id={`job-${job.id}`}
+                checked={selectedJobs.has(job.id)}
+                onCheckedChange={() => toggleJobSelection(job.id)}
+                className="h-5 w-5 border-gray-500 data-[state=checked]:bg-automate-purple data-[state=checked]:border-automate-purple"
+              />
+            </div>
             <CardHeader>
-              <CardTitle className="text-xl text-white">{job.positionName}</CardTitle>
+              <CardTitle className="text-xl text-white pr-6">{job.positionName}</CardTitle>
               <CardDescription className="flex items-center gap-1 text-gray-300">
                 <Building size={16} className="mb-1" />
                 {job.company}
@@ -240,12 +292,13 @@ const Jobs = () => {
               </div>
             </CardContent>
             <CardFooter>
-              <Button 
-                className="w-full bg-automate-purple hover:bg-automate-purple/90 text-white"
-                onClick={() => handleApply(job.id)}
-              >
-                Apply
-              </Button>
+              <Link href={`/analyze-job/${job.id}`} className="w-full">
+                <Button 
+                  className="w-full bg-automate-purple hover:bg-automate-purple/90 text-white"
+                >
+                  View Details
+                </Button>
+              </Link>
             </CardFooter>
           </Card>
         ))}

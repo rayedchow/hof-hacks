@@ -1,3 +1,4 @@
+from random import randint
 from apify_client import ApifyClient
 from fastapi import FastAPI, Body
 from pydantic import BaseModel
@@ -22,6 +23,29 @@ class JobSearch(BaseModel):
     search: str
     location: str
 
+first_jobs = [
+    {
+        "id": "jjzkkzsukk4849k",
+        "location": "Burlington, MA",
+        "company": "Veracode",
+        "positionName": "Solutions Architect Intern",
+        "url": "https://boards.greenhouse.io/embed/job_app?token=7843495002",
+        "value": 63,
+        "isExpired": False,
+        "jobType": "Full-time",
+        "postedAt": "2025-04-19T13:55:26-04:00",
+        "description": "Looking for an internship in an innovative, high-growth company in one of the hottest segments of the security market?  Look no further than Veracode! Veracode is seeking a Solutions Architecture intern to join our 12-week Summer Internship Program."
+    },
+    {
+        "id": "7jfkfklltopuuumz85",
+        
+    },
+    {
+        "id": "988ghgjfklhi38jdkl",
+
+    }
+]
+
 def get_jobs(search: str, location: str):
     run_input = {
         "position": search,
@@ -33,7 +57,23 @@ def get_jobs(search: str, location: str):
         # "followApplyRedirects": True,
     }
     run = client.actor("hMvNSpz3JnHgl5jkh").call(run_input=run_input)
-    return client.dataset(run["defaultDatasetId"]).iterate_items()
+    jobs = []
+    for job in client.dataset(run["defaultDatasetId"]).iterate_items():
+        new_job = {
+            "company": job["company"],
+            "description": job["description"],
+            "id": job["id"],
+            "isExpired": job["isExpired"],
+            "jobType": job["jobType"],
+            "location": job["location"],
+            "positionName": job["positionName"],
+            "postedAt": job["postedAt"],
+            "url": job["url"] or job["externalApplyLink"],
+            "value": randint(30, 95)
+        }
+        jobs.append(new_job)
+    
+    return jobs
 
 @app.post("/jobs")
 async def jobs_endpoint(job_search: JobSearch = Body(...)):
