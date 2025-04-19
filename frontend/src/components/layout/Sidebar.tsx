@@ -4,15 +4,11 @@ import { NavLink } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   Briefcase, 
-  Calendar, 
-  FileText, 
   Settings, 
-  HelpCircle, 
   ChevronLeft, 
   ChevronRight,
   UserCircle
 } from 'lucide-react';
-import ProfileSection from './ProfileSection';
 
 interface NavItemProps {
   to: string;
@@ -47,11 +43,9 @@ const NavItem = ({ to, icon: Icon, label, shortcut, collapsed, onClick }: NavIte
 interface SidebarProps {
   collapsed: boolean;
   toggleCollapse: () => void;
-  showProfile: boolean;
-  toggleProfile: () => void;
 }
 
-const Sidebar = ({ collapsed, toggleCollapse, showProfile, toggleProfile }: SidebarProps) => {
+const Sidebar = ({ collapsed, toggleCollapse }: SidebarProps) => {
   return (
     <div className={`${collapsed ? 'w-16' : 'w-64'} bg-automate-black border-r border-gray-800 flex flex-col automate-transition`}>
       <div className="p-4 flex items-center">
@@ -69,42 +63,12 @@ const Sidebar = ({ collapsed, toggleCollapse, showProfile, toggleProfile }: Side
         )}
       </div>
       
-      {/* Profile Button */}
-      {!showProfile && (
-        <div className="px-2 mt-2 mb-4">
-          <button 
-            onClick={toggleProfile} 
-            className="w-full flex items-center px-4 py-3 rounded-md text-gray-300 hover:bg-automate-dark-gray automate-transition"
-          >
-            <UserCircle size={20} />
-            {!collapsed && <span className="ml-3">Profile</span>}
-          </button>
-        </div>
-      )}
-
-      {/* Profile Section or Navigation */}
-      {showProfile ? (
-        <div className={`flex-1 overflow-auto ${collapsed ? 'hidden' : 'block'}`}>
-          <div className="px-2 mb-2">
-            <button 
-              onClick={toggleProfile} 
-              className="w-full text-left px-4 py-2 rounded-md text-gray-400 hover:bg-automate-dark-gray automate-transition"
-            >
-              ← Back to Navigation
-            </button>
-          </div>
-          <ProfileSection />
-        </div> 
-      ) : (
-        <div className="mt-6 px-2 flex-1 overflow-auto">
-          <NavItem to="/Dashboard" icon={LayoutDashboard} label="Dashboard" shortcut="Alt+D" collapsed={collapsed} />
-          <NavItem to="/jobs" icon={Briefcase} label="Jobs" shortcut="Alt+J" collapsed={collapsed} />
-          <NavItem to="/schedules" icon={Calendar} label="Schedules" shortcut="Alt+S" collapsed={collapsed} />
-          <NavItem to="/logs" icon={FileText} label="Logs" shortcut="Alt+L" collapsed={collapsed} />
-          <NavItem to="/settings" icon={Settings} label="Settings" shortcut="Alt+C" collapsed={collapsed} />
-          <NavItem to="/help" icon={HelpCircle} label="Help" shortcut="Alt+H" collapsed={collapsed} />
-        </div>
-      )}
+      <div className="mt-6 px-2 flex-1 overflow-auto">
+        <NavItem to="/Dashboard" icon={LayoutDashboard} label="Dashboard" shortcut="Alt+D" collapsed={collapsed} />
+        <NavItem to="/jobs" icon={Briefcase} label="Jobs" shortcut="Alt+J" collapsed={collapsed} />
+        <NavItem to="/profile" icon={UserCircle} label="Profile" shortcut="Alt+P" collapsed={collapsed} />
+        <NavItem to="/settings" icon={Settings} label="Settings" shortcut="Alt+C" collapsed={collapsed} />
+      </div>
 
       {/* Collapse Button */}
       <div className="p-4 border-t border-gray-800">

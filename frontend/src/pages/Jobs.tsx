@@ -10,7 +10,6 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription }
 interface Job {
   company: string;
   description: string;
-  descriptionHTML: string;
   externalApplyLink: string;
   id: string;
   isExpired: boolean;
@@ -49,13 +48,47 @@ const Jobs = () => {
       setIsLoading(true);
       setError(null);
       
+      // Check if we have cached jobs data in localStorage
+      const cachedJobsData = localStorage.getItem('cachedJobs');
+      const cachedTimestamp = localStorage.getItem('cachedJobsTimestamp');
+      
+      // Define cache expiration (3 hours in milliseconds)
+      const cacheExpirationTime = 3 * 60 * 60 * 1000; // 3 hours in milliseconds
+      const currentTime = new Date().getTime();
+      
+      // Check if we have valid cached data
+      if (cachedJobsData && cachedTimestamp) {
+        const cacheTime = parseInt(cachedTimestamp, 10);
+        // If cache is still valid (less than 3 hours old)
+        if (currentTime - cacheTime < cacheExpirationTime) {
+          try {
+            const parsedJobs = JSON.parse(cachedJobsData);
+            // Remove descriptionHTML property from each job in the array
+            const cleanedJobs = parsedJobs.map(job => {
+              const { descriptionHTML, ...rest } = job;
+              return rest;
+            });
+            setJobs(cleanedJobs);
+            setIsLoading(false);
+            console.log('Using cached jobs data');
+            return; // Exit early as we're using cached data
+          } catch (parseError) {
+            console.error('Error parsing cached jobs:', parseError);
+            // Continue with API fetch if parsing fails
+          }
+        } else {
+          console.log('Cache expired, fetching fresh data');
+        }
+      }
+      
+      // If no valid cache exists, fetch from API
       try {
         const response = await fetch('http://localhost:5000/jobs', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ search: "software engineer intern" }),
+          body: JSON.stringify({ search: "software engineer intern", location: "New York" }),
         });
         
         if (!response.ok) {
@@ -63,31 +96,25 @@ const Jobs = () => {
         }
         
         const data = await response.json();
-        setJobs(data);
+        
+        // Remove descriptionHTML property from each job before updating state
+        const cleanedJobs: Job[] = data.map(job => {
+          const { descriptionHTML, ...rest } = job;
+          return rest;
+        });
+        
+        // Update state with the cleaned data
+        setJobs(cleanedJobs);
+        
+        // Cache the cleaned data in localStorage with timestamp
+        localStorage.setItem('cachedJobs', JSON.stringify(cleanedJobs));
+        localStorage.setItem('cachedJobsTimestamp', currentTime.toString());
+        console.log('Jobs data cached');
       } catch (err) {
         console.error('Failed to fetch jobs:', err);
         setError('Failed to load jobs. Please try again later.');
         // Set some default jobs in case the API fails
-        setJobs([
-          { 
-            id: '1', 
-            title: 'Software Engineer Intern', 
-            company: 'TechCorp', 
-            location: 'San Francisco, CA', 
-            salary: '$30 - $40/hr',
-            type: 'Full-time',
-            description: 'Summer internship for undergraduate students. Work on real-world projects using React, Node.js, and TypeScript.'
-          },
-          { 
-            id: '2', 
-            title: 'Data Science Intern', 
-            company: 'AnalyticsPro', 
-            location: 'Remote', 
-            salary: '$25 - $35/hr',
-            type: 'Part-time',
-            description: 'Analyze large datasets and build machine learning models. Knowledge of Python and statistics required.'
-          },
-        ]);
+        setJobs([]);
       } finally {
         setIsLoading(false);
       }
@@ -104,10 +131,10 @@ const Jobs = () => {
   
   // Filter jobs based on search term and filters
   const filteredJobs = jobs.filter(job => {
-    const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    const matchesSearch = job.positionName.toLowerCase().includes(searchTerm.toLowerCase()) || 
                           job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
                           job.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesType = selectedType ? job.type === selectedType : true;
+    const matchesType = selectedType ? job.jobType.includes(selectedType) : true;
     const matchesLocation = selectedLocation ? 
                            job.location.toLowerCase().includes(selectedLocation.toLowerCase()) : true;
     
@@ -202,7 +229,7 @@ const Jobs = () => {
                 </div>
                 <div className="flex items-center gap-2 text-gray-300">
                   <Briefcase size={16} />
-                  <span>{job.type}</span>
+                  <span>{job.jobType.join(', ')}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-300">
                   <CreditCard size={16} />
