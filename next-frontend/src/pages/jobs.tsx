@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import AppLayout from '@/components/layout/AppLayout';
 
 // Job type for employment opportunities
 interface Job {
@@ -260,4 +261,12 @@ const Jobs = () => {
   );
 };
 
-export default Jobs;
+const JobsPage = () => {
+  return (
+    <AppLayout>
+      <Jobs />
+    </AppLayout>
+  );
+};
+
+export default JobsPage;

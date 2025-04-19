@@ -19,6 +19,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import AppLayout from '@/components/layout/AppLayout';
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState('general');
@@ -358,4 +359,12 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+const SettingsPage = () => {
+  return (
+    <AppLayout>
+      <Settings />
+    </AppLayout>
+  );
+};
+
+export default SettingsPage;

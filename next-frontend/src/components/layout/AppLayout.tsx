@@ -1,10 +1,11 @@
 
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
-import { Outlet } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 
 const AppLayout = ({ children }: { children?: React.ReactNode }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const pathname = usePathname();
 
   return (
     <div className="flex h-screen w-full bg-automate-black text-white overflow-hidden">
@@ -13,7 +14,7 @@ const AppLayout = ({ children }: { children?: React.ReactNode }) => {
         toggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
       />
       <main className="flex-1 overflow-auto">
-        {children || <Outlet />}
+        {children}
       </main>
     </div>
   );

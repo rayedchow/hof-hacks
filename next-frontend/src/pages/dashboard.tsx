@@ -3,11 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { Clock, CheckCircle2, AlertCircle, PauseCircle, PlayCircle } from 'lucide-react';
+import AppLayout from '@/components/layout/AppLayout';
 
 const Dashboard = () => {
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const [isMounted, setIsMounted] = useState(false);
-  const username = "Alex";
+  const username = "Rayed";
   
   useEffect(() => {
     // Only run on client-side
@@ -70,13 +71,13 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="p-6 h-full flex flex-col">
+    <div className="p-6 h-full flex flex-col bg-automate-black text-foreground">
       {/* Header with greeting and time */}
       <div className="mb-6">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-semibold">
             <span className="text-white">{getGreeting()}, </span>
-            <span className="text-automate-purple">{username}</span>
+            <span className="text-automate-purple-light">{username}</span>
           </h1>
           <div className="text-gray-300">
             {isMounted ? `${formattedDate} / ${formattedTime}` : ''}
@@ -92,8 +93,8 @@ const Dashboard = () => {
           <div className="grid grid-cols-4 gap-4 mb-6">
             {/* Active Jobs */}
             <div className="automate-card flex items-center">
-              <div className="w-10 h-10 rounded-full bg-automate-purple/20 flex items-center justify-center mr-3">
-                <PlayCircle className="text-automate-purple" />
+              <div className="w-10 h-10 rounded-full bg-automate-purple-light/20 flex items-center justify-center mr-3">
+                <PlayCircle className="text-automate-purple-light" />
               </div>
               <div>
                 <p className="text-gray-400 text-sm">Active Jobs</p>
@@ -126,8 +127,8 @@ const Dashboard = () => {
             {/* Total Jobs */}
             <div className="automate-card flex items-center relative overflow-hidden">
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-[95%] h-[95%] rounded-full border-4 border-automate-purple/30"></div>
-                <div className="absolute inset-0 flex items-center justify-center border-4 border-automate-purple rounded-full" 
+                <div className="w-[95%] h-[95%] rounded-full border-4 border-automate-purple-light/30"></div>
+                <div className="absolute inset-0 flex items-center justify-center border-4 border-automate-purple-light rounded-full" 
                      style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 0 80%)' }}>
                 </div>
               </div>
@@ -158,16 +159,16 @@ const Dashboard = () => {
                   <XAxis dataKey="name" stroke="#666" />
                   <YAxis stroke="#666" />
                   <Tooltip 
-                    contentStyle={{ backgroundColor: '#1A1A22', border: '1px solid #333', borderRadius: '0.375rem' }}
+                    contentStyle={{ backgroundColor: '#1A1A22' /* automate-dark-gray */, border: '1px solid #333', borderRadius: '0.375rem' }}
                     labelStyle={{ color: '#fff' }}
                   />
                   <Area 
                     type="monotone" 
                     dataKey="jobs" 
-                    stroke="#9b87f5" 
+                    stroke="#9b87f5" /* This is automate-purple-light */
                     fillOpacity={1} 
                     fill="url(#colorJobs)" 
-                    activeDot={{ r: 6, fill: '#fff', stroke: '#9b87f5' }}
+                    activeDot={{ r: 6, fill: '#fff', stroke: '#9b87f5' /* automate-purple-light */ }}
                   />
                 </AreaChart>
               </ResponsiveContainer>
@@ -225,7 +226,7 @@ const Dashboard = () => {
                   </Pie>
                   <Tooltip 
                     formatter={(value, name) => [`${value} jobs`, name]}
-                    contentStyle={{ backgroundColor: '#1A1A22', border: '1px solid #333', borderRadius: '0.375rem' }}
+                    contentStyle={{ backgroundColor: '#1A1A22' /* automate-dark-gray */, border: '1px solid #333', borderRadius: '0.375rem' }}
                     labelStyle={{ color: '#fff' }}
                   />
                 </PieChart>
@@ -246,7 +247,7 @@ const Dashboard = () => {
           <div className="automate-card flex-1">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-semibold">Recent Jobs</h2>
-              <button className="text-sm text-automate-purple hover:text-automate-purple-light">View All</button>
+              <button className="text-sm text-automate-purple-light hover:text-automate-purple">View All</button>
             </div>
             <div className="overflow-y-auto max-h-[280px]">
               <table className="w-full text-left">
@@ -259,7 +260,7 @@ const Dashboard = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-800">
                   {recentJobs.map(job => (
-                    <tr key={job.id} className="hover:bg-gray-800/30">
+                    <tr key={job.id} className="hover:bg-automate-dark-gray/70">
                       <td className="py-3 text-white">{job.name}</td>
                       <td className={`py-3 ${job.statusColor}`}>{job.status}</td>
                       <td className="py-3 text-gray-400 text-sm">
@@ -278,4 +279,12 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+const DashboardPage = () => {
+  return (
+    <AppLayout>
+      <Dashboard />
+    </AppLayout>
+  );
+};
+
+export default DashboardPage;

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Folder, Github, Linkedin, Globe, Mail, Phone, Save, FileText, Home, MapPin } from 'lucide-react';
+import AppLayout from '@/components/layout/AppLayout';
 
 // Constants
 const CACHE_KEY = 'automate_profile_data';
@@ -465,4 +466,12 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+const ProfilePage = () => {
+  return (
+    <AppLayout>
+      <Profile />
+    </AppLayout>
+  );
+};
+
+export default ProfilePage;

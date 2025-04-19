@@ -66,7 +66,7 @@ const Sidebar = ({ collapsed, toggleCollapse }: SidebarProps) => {
       </div>
       
       <div className="mt-6 px-2 flex-1 overflow-auto">
-        <NavItem to="/Dashboard" icon={LayoutDashboard} label="Dashboard" shortcut="Alt+D" collapsed={collapsed} />
+        <NavItem to="/dashboard" icon={LayoutDashboard} label="Dashboard" shortcut="Alt+D" collapsed={collapsed} />
         <NavItem to="/jobs" icon={Briefcase} label="Jobs" shortcut="Alt+J" collapsed={collapsed} />
         <NavItem to="/profile" icon={UserCircle} label="Profile" shortcut="Alt+P" collapsed={collapsed} />
         <NavItem to="/settings" icon={Settings} label="Settings" shortcut="Alt+C" collapsed={collapsed} />
