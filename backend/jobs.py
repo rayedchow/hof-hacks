@@ -24,26 +24,54 @@ class JobSearch(BaseModel):
     location: str
 
 first_jobs = [
-    {
-        "id": "jjzkkzsukk4849k",
-        "location": "Burlington, MA",
-        "company": "Veracode",
-        "positionName": "Solutions Architect Intern",
-        "url": "https://boards.greenhouse.io/embed/job_app?token=7843495002",
-        "value": 63,
-        "isExpired": False,
-        "jobType": "Full-time",
-        "postedAt": "2025-04-19T13:55:26-04:00",
-        "description": "Looking for an internship in an innovative, high-growth company in one of the hottest segments of the security market?  Look no further than Veracode! Veracode is seeking a Solutions Architecture intern to join our 12-week Summer Internship Program."
-    },
-    {
-        "id": "7jfkfklltopuuumz85",
-        
-    },
-    {
-        "id": "988ghgjfklhi38jdkl",
-
-    }
+  {
+    "id": "jjzkkzsukk4849k",
+    "location": "Burlington, MA",
+    "company": "Veracode",
+    "positionName": "Solutions Architect Intern",
+    "url": "https://boards.greenhouse.io/embed/job_app?token=7843495002",
+    "value": 63,
+    "isExpired": false,
+    "jobType": "Full-time",
+    "postedAt": "2025-04-19T13:55:26-04:00",
+    "description": "Looking for an internship in an innovative, high-growth company in one of the hottest segments of the security market? Look no further than Veracode! Veracode is seeking a Solutions Architecture intern to join our 12‑week Summer Internship Program."
+  },
+  {
+    "id": "7jfkfklltopuuumz85",
+    "location": "San Francisco, CA",
+    "company": "Jerry",
+    "positionName": "Software Engineer I (San Francisco)",
+    "url": "https://jobs.ashbyhq.com/Jerry/9458cca3-9c58-4aad-a579-7f5720c7ec87/application?utm_source=6Vdva5VPyD",
+    "value": 50,
+    "isExpired": false,
+    "jobType": "Full-time",
+    "postedAt": "2025-04-15",
+    "description": "Jerry is hiring a Software Engineer I for the San Francisco Bay Area to build AI-powered AllCar™ app features using AWS, React, NodeJS, and Python, impacting 5M+ users." 
+  },
+  {
+    "id": "988ghgjfklhi38jdkl",
+    "location": "Remote- US",
+    "company": "EverTrue",
+    "positionName": "Software Engineer I",
+    "url": "https://www.evertrue.com/career-positions/?gh_jid=6542910003&gh_src=f416bcbd3us",
+    "value": 80,
+    "isExpired": false,
+    "jobType": "Full-time",
+    "postedAt": "2025-04-15",
+    "description": "EverTrue is hiring a Software Engineer I to build AI-powered AllCar™ app features using AWS, React, NodeJS, and Python, impacting 5M+ users."
+  },
+  {
+    "id": "getinge_careers_1",
+    "location": "Remote- US",
+    "company": "Getinge",
+    "positionName": "Software Engineer I",
+    "url": "https://career5.successfactors.eu/careers?company=GetingeProd",
+    "value": 70,
+    "isExpired": false,
+    "jobType": "Full-time",
+    "postedAt": "2025-04-15",
+    "description": "Getinge is hiring a Software Engineer I to build AI-powered AllCar™ app features using AWS, React, NodeJS, and Python, impacting 5M+ users."
+  }
 ]
 
 def get_jobs(search: str, location: str):
