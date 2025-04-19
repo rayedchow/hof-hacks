@@ -1,0 +1,286 @@
+{
+  "tadpole-n1": {
+    "title": "Tadpool n1: Seamless Trading with Integrated Analytics on Solana",
+    "Inspiration": "The crypto trading landscape is fragmented and intimidating for newcomers. We witnessed friends and colleagues struggling with multiple platforms, complex interfaces, and scattered analytics tools. This inspired us to create a unified solution that makes sophisticated trading accessible to everyone, regardless of their experience level.",
+    "What it does": "Tadpool n1 is an all-in-one trading platform on Solana that combines:\n\nAn AI-powered chatbot for market guidance and strategy suggestions\nLive TradingView-style charts with real-time data\nIntegrated wallet and trading functionality\nQuantitative insights and automated trading strategies\nUser-friendly interface designed for both beginners and experienced traders",
+    "How we built it": "We leveraged a modern tech stack to ensure performance and reliability:\n\nFrontend: NextJS for a responsive and intuitive user interface\nBackend: FastAPI and Python for robust data processing and AI integration\nBlockchain: Solana's infrastructure for high-speed, low-cost transactions\nAI Integration: Custom models for market analysis and trading suggestions",
+    "Challenges we ran into": "Ensuring real-time data synchronization across multiple components\nOptimizing AI response times for market analysis\nBalancing feature complexity with user experience simplicity\nIntegrating multiple data sources while maintaining consistent performance\nManaging transaction speeds during high-volume trading periods",
+    "Accomplishments that we're proud of": "Created an intuitive platform that simplifies complex trading operations\nSuccessfully integrated AI-powered analysis with real-time trading\nDeveloped a responsive interface that handles live market data efficiently\nBuilt a scalable architecture that can support future feature additions",
+    "What we learned": "The importance of user experience in financial applications\nTechniques for optimizing real-time data processing\nStrategies for integrating AI capabilities effectively\nThe complexities of building on blockchain infrastructure\nMethods for balancing feature richness with simplicity",
+    "What's next for Tadpool n1": "Short-term Goals:\n\nLaunch beta testing program with early adopters\nEnhance AI chatbot capabilities with more advanced market analysis\nExpand the range of supported trading pairs\nImplement user feedback from the initial testing phase\n\nLong-term Vision:\n\nIntegrate additional DeFi tools and protocols\nDevelop comprehensive AI-powered portfolio management\nLaunch mobile applications for iOS and Android\nExpand to additional blockchain networks while maintaining Solana's speed advantages\n\nJoin us in revolutionizing the crypto trading experience with Tadpool n1 \u2013 where sophisticated trading meets simplicity.",
+    "Built With": "fastapi\nnode.js\npython\nsolanaapi",
+    "Try it out": "github.com",
+    "built_with": [
+      "fastapi",
+      "node.js",
+      "python",
+      "solanaapi"
+    ]
+  },
+  "medify-khoaid": {
+    "title": "About the Project",
+    "Inspiration": "The inspiration for\nMedify\ncame from the need for reliable, immediate medical support in remote and high-stress environments. We recognized that soldiers and field medics often face critical injuries in settings where quick, accurate treatment can mean the difference between life and death. Our goal was to create a tool that would empower medics and soldiers with fast, AI-driven wound analysis and personalized care guidance, directly at their fingertips.",
+    "What I Learned": "Building Medify was a transformative experience, blending the latest in AI and blockchain technology with real-world medical needs. I learned how to integrate image analysis, text-to-speech functionality, and blockchain for secure data storage into a cohesive app. The project taught me the importance of balancing technical innovation with user-centric design, ensuring that every feature served a practical purpose in the field.",
+    "How I Built the Project": "We developed\nMedify\nas a web app, focusing on an intuitive interface for rapid usability. The core of the app is powered by two AI models\u2014one for wound identification and another for image censorship to ensure privacy. We also integrated a GPT wrapper to provide step-by-step treatment instructions, which can be delivered via text-to-speech. Using blockchain technology, we added a secure, immutable record-keeping feature, ensuring data integrity and privacy for sensitive medical information.",
+    "Challenges Faced": "One major challenge was training the AI model to accurately identify and classify wounds across different environments and lighting conditions. Ensuring that the AI could function reliably in variable conditions required extensive testing and data augmentation. Integrating blockchain while keeping the app lightweight and responsive was another hurdle, as we wanted to avoid compromising performance in remote areas with limited connectivity. Additionally, designing a UI that was both simple enough for quick use yet detailed enough to provide necessary functionality was a balancing act.",
+    "Where did we use midnight?": "We were planning to integrate\nMidnight protocol\nto securely encrypt and protect sensitive data, ensuring privacy and security in high-stakes environments. Midnight is used to secure information such as the soldier\u2019s ID, the contents of their medkit, inventory details, the location of the injury, and specifics of the wound. By leveraging blockchain-based encryption, Midnight helps create a tamper-proof record of these sensitive data points, allowing only authorized personnel to access this information while maintaining data integrity and confidentiality. This is critical for field use, where privacy and security are paramount.",
+    "Built With": "cloudflaredv\ncolab\nfastapi\nflask\nfswebcam\nmidnight\nnext.js\npython\npytorch\nraspberry-pi\nreact\ntailwind\nvscode",
+    "Try it out": "medify.tech\ngithub.com",
+    "built_with": [
+      "cloudflaredv",
+      "colab",
+      "fastapi",
+      "flask",
+      "fswebcam",
+      "midnight",
+      "next.js",
+      "python",
+      "pytorch",
+      "raspberry-pi",
+      "react",
+      "tailwind",
+      "vscode"
+    ]
+  },
+  "fraxai": {
+    "title": null,
+    "Inspiration": "The inspiration for Frax AI comes from a personal experience I had after a minor accident that resulted in a wrist fracture. I went to the emergency room, hoping for quick treatment, but was met with a crowded waiting room. As hours passed, my injury worsened due to the delay, turning a simple issue into a more complex one.\nThis experience highlighted the inefficiencies in emergency care and made me realize the potential for an AI solution to quickly assess fractures. I envisioned a tool that could streamline the process, reduce ER congestion, and provide timely recommendations, ensuring patients receive the care they need without unnecessary delays.",
+    "What it does": "Frax AI is an innovative AI model designed to analyze X-ray images for fractures. It identifies and classifies various types of fractures\u2014such as those in fingers, limbs, or arms\u2014providing detailed output that includes the specific points of fracture and a confidence score for each diagnosis. This allows healthcare professionals to quickly understand the nature of an injury without the need for extensive manual review.\nIn addition to fracture detection, Frax AI features an integrated large language model (LLM) that interprets the model's output and generates patient-friendly recommendations. This includes guidance on fracture management and next steps for care, helping nurses and patients understand the best course of action.\nBy combining advanced image analysis with actionable insights, Frax AI aims to enhance decision-making in emergency care settings, reduce wait times, and improve overall patient outcomes. Its goal is to provide fast, reliable assessments that can help alleviate the burden on medical staff and optimize care delivery in crowded ER environments.",
+    "How we built it": "We built Frax AI using a combination of advanced machine learning techniques and robust frameworks. The core of our model is developed in Python, utilizing PyTorch for deep learning. To train our fracture detection model, we gathered a diverse dataset of labeled X-ray images, which included a variety of fracture types. This dataset was crucial for teaching the model to accurately identify and classify fractures.\nWe employed techniques such as data augmentation to enhance the model's robustness, helping it generalize better to unseen data. The architecture we chose, Faster R-CNN, is well-suited for object detection tasks, allowing us to efficiently detect fractures in the images.\nTo manage the machine learning lifecycle, we integrated MLflow, which enabled us to track experiments, manage model versions, and streamline the deployment process. This allowed us to maintain a clear overview of our training runs and easily reproduce results.\nThe integration of the large language model (LLM) was another critical component. We utilized OpenAI's API to enhance the user experience by providing natural language explanations and recommendations based on the detected fractures. Fine-tuning the LLM to ensure it generated practical and comprehensible advice required iterative testing and feedback from healthcare professionals.\nThroughout the development process, we prioritized collaboration with medical experts to validate our model's performance and ensure its real-world applicability. This collaborative approach helped us align our technical capabilities with the practical needs of healthcare providers, resulting in a tool that is not only effective but also user-friendly.",
+    "Challenges We Ran Into": "Throughout the development of Frax AI, we encountered several significant challenges:\n\nMosaic Data Augmentation\n: We initially attempted to implement mosaic data augmentation to enhance our training dataset. However, the model struggled to accurately learn from these mixed images, leading us to pivot to simpler augmentation techniques that yielded better results.\nGoogle Vision API Integration\n: We explored using the Google Vision API for preliminary fracture detection but faced limitations in customization and specificity. The results did not meet our expectations for our specific use case, prompting us to focus on developing our own dedicated model instead.\nOverfitting Concerns\n: During training, we observed signs of overfitting due to the limited training data. This required us to implement additional regularization techniques and diversify our dataset to ensure better generalization to unseen X-ray images.\nBalancing Speed and Accuracy\n: Achieving a balance between rapid inference time and high accuracy proved challenging. We had to fine-tune the model's architecture and parameters to provide timely assessments without compromising diagnostic quality.\nDeployment and Usability Testing\n: Once the model was trained, deploying it in a way that healthcare professionals could easily use was a significant hurdle. We focused on designing a user-friendly interface and conducting thorough testing to ensure reliability and ease of use in real-world environments.",
+    "Accomplishments That We're Proud Of": "We are proud of several key accomplishments achieved during the development of Frax AI:\n\nHigh Accuracy\n: Our fracture detection model boasts an impressive accuracy of 90%, demonstrating its effectiveness in identifying and classifying various types of fractures from X-ray images.\nSeamless Integration\n: Successfully integrating the fracture detection model with the large language model (LLM) enabled us to provide meaningful, patient-friendly recommendations based on the detected fractures. This dual functionality enhances the overall utility of the tool in clinical settings.\nUser-Friendly Prototype\n: We developed a functional prototype that showcases the capabilities of Frax AI. The user interface is designed to be intuitive, ensuring that healthcare professionals can quickly and easily access the tool's insights.\nPotential Impact\n: Our solution has the potential to significantly improve patient outcomes by reducing wait times and streamlining fracture assessments in emergency care settings. By addressing the inefficiencies in current processes, we aim to alleviate some of the burdens on medical staff.",
+    "What We Learned": "The development of Frax AI taught us valuable lessons, including:\n\nImportance of Robust Data\n: We learned that having a diverse and well-annotated dataset is critical for training effective models. This reinforced the need for thorough data preparation and augmentation strategies.\nIterative Development\n: The challenges we faced highlighted the necessity of an iterative approach. Experimenting with different techniques and being open to pivoting when something didn\u2019t work were key to our success.\nEthical Considerations\n: We gained insights into the ethical implications of using AI in healthcare, particularly regarding patient data privacy and the importance of ensuring our tool supports, rather than replaces, healthcare professionals.\nTechnical Skills\n: Our technical expertise in machine learning, specifically with PyTorch and MLflow, expanded significantly throughout the project, equipping us with new skills for future endeavors.",
+    "What's Next for Frax AI": "As we look to the future, addressing privacy and patient data concerns is our top priority, particularly in compliance with regulations like HIPAA. Alongside these enhancements, we plan to pivot Frax AI to create a similar application for military use, aimed at assisting combat medics and doctors. This new app will enable personnel in the field to quickly assess wounds, such as gunshot injuries, by simply taking a picture. The AI will provide immediate guidance on treatment, allowing for timely and effective care. This approach has the potential to empower paramedics and military personnel to manage multiple patients more efficiently, improving response times and outcomes in critical situations. Ultimately, we aim to harness AI technology to enhance medical care in high-pressure environments and save lives.",
+    "Built With": "databricks\ndetectron2\nfigma\ngooglecolab\nkaggle\nllm\nmlflow\nnext\nnode.js\nopenai\npython\npytorch\nreact\nvscode",
+    "Try it out": "github.com\ngithub.com",
+    "built_with": [
+      "databricks",
+      "detectron2",
+      "figma",
+      "googlecolab",
+      "kaggle",
+      "llm",
+      "mlflow",
+      "next",
+      "node.js",
+      "openai",
+      "python",
+      "pytorch",
+      "react",
+      "vscode"
+    ]
+  },
+  "codeu": {
+    "title": null,
+    "Inspiration": "In our AP Computer Science A class, many of our peers understand the computer science concepts and ideas from the lessons they learned in the classroom. However, when told to\napply\ntheir knowledge and concepts, they usually struggle and are unable to actually code their answers and ideas. This is very common amongst computer science students, and with this platform, these students can practice and learn units they have trouble with. The platform is designed to understand students' knowledge with the diagnostic test and cater to their weaknesses by promoting lessons on those topics.",
+    "What it does": "This platform allows students to take a diagnostic exams, which the platform evaluates to determine which topics should be recommended to the student. It tests them on significant units and lessons they should be able to apply in the real world, universal to all programming. Our application is catered toward Java for now as the language is widely used among students taking computer science courses in high school and college. After the exam, the app lists\nkey units\nthat they missed during the diagnostic. The user can then use the Lessons page to read over the units they had struggled with in the exam. After reading over the lessons, they can take the exam again, which is intended to test their knowledge on a separate bank of questions. From our experiences in hackathons, we know projects are the best way to learn- paired with a comprehensive curriculum, students draw upon their cumulative knowledge to create applications that have real-world implications.",
+    "How we built it": "We built CodeU using NextJS, Typescript, React, and RapidAPI. All of these frameworks help stabilize the project for further scaleability and help ease the development process.",
+    "Challenges we ran into": "A challenge we ran into was implementing RapidAPI, because we were trying to use an API (Judge0) to help compile code in the backend for certain input questions on the exam.",
+    "Accomplishments that we're proud of": "We are proud of the exam and lesson functionality, and also the compiler that allows users to input code to answer questions.",
+    "What we learned": "We learned a lot about using NextJS, Typescript, and RapidAPI, because it is the first time we have used this framework combination.",
+    "What's next for CodeU": "CodeU is scalable, which means we plan on adding more languages and more exams in the future. Thankfully, the nature of the application being\nsoft-coded\npermits us to change content very easily. However, we may consider utilizing a database or content management system to optimize the process of updating lessons and exams so we can easily add more data without touching the actual code. \nWe also plan on implementing a projects section that counts as an exam, as we mentioned project-based learning is extremely effective in teaching students how to apply their programming skills to the real-world. We have only built the skeleton of the application thus far and designed it in such a way that will allow us to add updates and new features easily in the future, so performing comprehensive research on successful learning techniques will amplify our application's effectiveness in teaching students how to code. For instance, to optimize active recall and minimize burnout, we will limit the amount of time a student stays on the site (e.g. after completing 3 lessons consecutively a warning will pop up to take a break) or email the student after every week to review certain topics.",
+    "Built With": "nextjs\nrapidapi\nreact\ntypescript",
+    "Try it out": "codeuni.tech\ncodeu-l186.vercel.app\ngithub.com",
+    "built_with": [
+      "nextjs",
+      "rapidapi",
+      "react",
+      "typescript"
+    ]
+  },
+  "rader": {
+    "title": null,
+    "Inspiration": "The inspiration behind RadER stems from the critical shortage of radiologists, particularly in emergency departments (EDs) where timely diagnosis can be the difference between life and death. In these high-pressure environments, nurses and other healthcare professionals often struggle to get quick, accurate interpretations of radiological images due to the lack of specialized staff. RadER was developed to bridge this gap by using AI to rapidly analyze X-rays or other imaging and identify fractures, providing immediate, reliable feedback to nurses and supporting quicker treatment decisions.",
+    "What it does": "RadER leverages artificial intelligence to scan radiological images\u2014such as X-rays\u2014detecting any fractures or abnormalities. It provides clear, visual feedback on where the fractures are located and whether there is a fracture at all. The AI can highlight areas of concern and outline the specific bone(s) affected, making it easier for medical staff, especially nurses without radiology expertise, to understand the severity and location of injuries. This results in faster triage and more informed decision-making.",
+    "How we built it": "RadER was built using a combination of advanced machine learning algorithms and a full-stack tech infrastructure. The AI model was trained on a large dataset of annotated X-ray images to learn how to detect fractures with high accuracy. For the full-stack part, a web-based interface was developed, accessible by healthcare workers such as nurses or physicians in emergency settings.",
+    "Challenges we ran into": "Wifi didnt work properly",
+    "Accomplishments that we're proud of": "After extensive training and validation, RadER\u2019s AI model is able to detect fractures with a high degree of accuracy, minimizing false positives and negatives.",
+    "What we learned": "Building an AI system for healthcare requires continuous iteration, testing, and refining. Even after achieving a good model, real-world application often throws up edge cases that weren\u2019t anticipated during development.",
+    "What's next for RadER": "We plan to expand the scope of RadER to detect a wider range of injuries, including soft-tissue injuries or other internal medical conditions visible through imaging, such as tumors or hemorrhages.",
+    "Built With": "detectron2\nflask\nnextjs\npython",
+    "built_with": [
+      "detectron2",
+      "flask",
+      "nextjs",
+      "python"
+    ]
+  },
+  "rayroom": {
+    "title": null,
+    "Built With": "untitled",
+    "built_with": [
+      "untitled"
+    ]
+  },
+  "market-owl": {
+    "title": null,
+    "Inspiration": "While searching for summer housing, one of us realized how helpful it would be to have a tool that could negotiate automatically. As college students on a budget, we\u2019re always looking to save money by buying used items\u2014most commonly on Facebook Marketplace. But messaging strangers online can be intimidating, especially when you don\u2019t know what to say or how to negotiate. Sellers have all kinds of personalities, and negotiation takes strategy and adaptability.",
+    "What it does": "MarketOwl\nis an AI-powered negotiator for Facebook Marketplace. It analyzes listings and messages from sellers to help you get the best deal. Users simply provide a listing URL, and the app generates optimized negotiation messages tailored for the seller.",
+    "How we built it": "Frontend:\nBuilt with Next.js and Tailwind CSS\nBackend:\nPowered by FastAPI with a custom REST API\nImage Analysis:\nUsed Ollama and LLaMA to detect defects in product photos\nMessage Generation:\nFine-tuned a model using Modal to craft negotiation messages",
+    "Challenges we ran into": "Web scraping\nwas tricky due to limited free trial credits and inefficiencies\u2014the scraper pulled all listings instead of just one.\nModal\nwas a new tool for us, and we ran into several bugs that blocked progress and required troubleshooting.",
+    "Built With": "fastapi\nllama\nmodal\nollama\ntailwind\ntypescript",
+    "Try it out": "github.com",
+    "built_with": [
+      "fastapi",
+      "llama",
+      "modal",
+      "ollama",
+      "tailwind",
+      "typescript"
+    ]
+  },
+  "aortaaid": {
+    "title": null,
+    "Inspiration": "The aorta, the largest artery in the body, plays a crucial role in circulating oxygen-rich blood from the heart to the rest of the body. Aortic diseases, such as aneurysms and dissections, can be life-threatening and often require prompt diagnosis and treatment. Given the high stakes of cardiovascular diseases and the pivotal role that an effective diagnosis plays in patient care, we aimed to create a tool that empowers medical caregivers with advanced diagnostic capabilities, ultimately improving patient outcomes. We were motivated by the potential to leverage AI technology to bridge gaps in healthcare, especially in under-resourced areas where specialist doctors might not always be available. By providing caregivers with this accessible diagnostic tool, we hope to reduce the burden on healthcare systems and improve patient care efficiency.",
+    "What it does": "AortaAid is a web application designed to assist medical caregivers in diagnosing patients with cardiovascular issues, furthermore determining the \u201crisk factor\u201d of each patient. By inputting patient data into the application, nurses can receive an analysis generated by an AI trained on numerous cardiovascular datasets present on Kaggle. This data-driven method of analyzation, combined with the medical expertise of doctors and nurses, can lead to timely diagnoses that could ensure appropriate medical interventions. The application offers a user-friendly interface where nurses can enter various patient metrics such as BMI, age, and smoking status, and furthermore enter cardiovascular issues such as heart disease and risk of stroke. Once all of the metrics are given, the program\u2019s trained AI calculates the most impactful factor in the case of a negative diagnosis, and provides advice to better the patient\u2019s cardiovascular health.",
+    "How we built it": "We split our app into two main sections: The frontend app and our AI models (backend). For the frontend app, we used a Next.JS framework to use React.js, TailwindCSS, and Typescript to build out the user interface. For the backend application of our project, we used Python and Scikit to train five AI models to help predict and analyze risks in various cardiovascular diseases. Then, we connected the two using FlaskAPI and Axios, creating REST requests to the backend from the frontend by transferring JSON data.",
+    "Challenges we ran into": "One major hurdle was ensuring the quality and consistency of the data from Kaggle, which required extensive preprocessing and cleaning. We also faced challenges related to ensuring the security and privacy of patient data.",
+    "Accomplishments that we're proud of": "We are proud of successfully integrating a sophisticated AI model into a practical tool that can be used in real-world clinical settings. We are also proud of the collaborative effort that went into this project, and the learning experience that came for all three of us.",
+    "What we learned": "Through this program, we gained valuable insights into the complexities of medical data and the importance of data quality in training effective AI models. We also learned a great deal about the challenges of developing effective healthcare applications.",
+    "What's next for AortaAid": "In order to get more precise results, we intend to collect data from additional hospitals in the future. We hope to gain access to a wide variety of patient data by working with more healthcare organizations, which will improve the accuracy and resilience of our AI models. Our ability to fine-tune our diagnostic algorithms and make sure they work well for a variety of populations and clinical contexts will be enhanced by the growth of data sources. Furthermore, we plan to broaden our scope beyond cardiovascular health in order to create a comprehensive tool for medical caregivers. Incorporating diagnostics for a broader range of illnesses will enable nurses and other healthcare professionals to diagnose patients more rapidly by employing more precise measurements. AortaAid has the potential to become a comprehensive system that supports multiple facets of patient care, ranging from continuous monitoring to early detection, by incorporating extra health indicators and diagnostic capabilities.",
+    "Built With": "kaggle\nnext.js\npython\nreact\nscikit-learn\ntypescript",
+    "Try it out": "github.com",
+    "built_with": [
+      "kaggle",
+      "next.js",
+      "python",
+      "react",
+      "scikit-learn",
+      "typescript"
+    ]
+  },
+  "iqbin": {
+    "title": null,
+    "Inspiration": "In our school, we always see waste products in the wrong category of bin. We often see recyclable items like paper and plastics in trash bins, when they should be in the recycle bin. This is a major inefficiency for our environment, and we can solve this issue with a waste system with seamless waste detectors.",
+    "What it does": "With IQBin, we can show waste items to a specialized camera where we use our AI model to detect the category of waste product. Waste items can be categorized with three different types of products: Trash, Recyclable, or Biodegradable.",
+    "How we built it": "Some technologies we used to create the model include C++, Arduino, Servo Motors, \nWe were able to allow the garbage can to recognise the different types of garbage using PyTorch and Yolo V5",
+    "Challenges we ran into": "We ran into issues with the development of our AI model, but we were able to solve the model's issues with the use of debugging.",
+    "Accomplishments that we're proud of": "We used NumPy and MatPlotLib to visualize our data using pie charts, graphs, and used data aggregation techniques to predict future pollution levels using the amount of waste detected and the different percentages for the three waste categories.",
+    "What we learned": "We learned a lot about robotics and arduino usage, as well as using matplotlib to visualize live data.",
+    "What's next for IQBin": "We can extend the waste products by training our AI model with more data",
+    "Built With": "c++\nnumpy\npython\npytorch\nreact\nyolov5",
+    "Try it out": "iqbin.xyz\ngithub.com\ngithub.com",
+    "built_with": [
+      "c++",
+      "numpy",
+      "python",
+      "pytorch",
+      "react",
+      "yolov5"
+    ]
+  },
+  "wordle-wniql2": {
+    "title": null,
+    "Inspiration": "As some airplanes adopt self-driving systems, some will remain manually controlled. Since all aircraft cannot adopt synchronized self-driving systems simultaneously, we need software to help us transition into this new technology to prevent accidents during taxi. Aircraft Marshalls direct aircraft with hand motions, so we used computer vision to translate these signals into maneuvering instructions.",
+    "What it does": "AeroVision lets you control a VIAM rover with just simple hand gestures. It can move forward, move backward, turn right, turn left, and stop. Just like Aircraft Marshalls, it uses standard marshalling signals and converts them to robot output/movement.",
+    "How we built it": "We used VIAM's app, API, and Python SDK to make a VIAM rover respond to hand signals. Then, we used an OpenCV model to track our hands on the webcam by each frame. Using the hand tracking model, we can make automated decisions for the VIAM rover to move using its wheels.",
+    "Challenges we ran into": "We ran into many challenges during this hackathon, one including the VIAM rover. Since we were new to their system and network for running their machine, we had to adapt to their API and hardware. However, the VIAM team was able to help us every step of the way.",
+    "Accomplishments that we're proud of": "Being able to integrate OpenCV with the VIAM rover",
+    "What we learned": "How to use the VIAM rover, and implementing their API using the python SDK.",
+    "What's next for AeroVision": "Better and more accurate tracking, more features with the OpenCV model. We are thinking about implementing this for Aerovision Pro Max Deluxe.",
+    "Built With": "mediapipe\nopencv\npython\nraspberry-pi\nviam",
+    "Try it out": "github.com",
+    "built_with": [
+      "mediapipe",
+      "opencv",
+      "python",
+      "raspberry-pi",
+      "viam"
+    ]
+  },
+  "eduguide-2jnvlx": {
+    "title": null,
+    "Inspiration": "We were inspired to create EduGuide because we saw a need for personalized and effective learning tools in schools. The AI model \"GPT\" was being used negatively by students, but in reality, it could be used in a much more efficient way. We realized that with advancements in AI and natural language processing, we could use GPT models to generate practice notes, quizzes, and open-ended questions that cater to the diverse needs of students across different subjects.",
+    "What it does": "EduGuide is a platform for students that uses AI-powered GPT models to provide feedback for practice materials. It covers a wide range of topics, offering practice notes, quizzes, and open-ended questions for each subject. Students can access these materials, attempt the quizzes, and submit their answers for grading. The AI system analyzes their responses and provides feedback, including explanations, corrections, and suggestions for improvement. This personalized feedback helps students understand their strengths and weaknesses and guides them in their learning.",
+    "How we built it": "To build EduGuide, we used a combination of technologies. The core of the app relies on the GPT model, which generates the practice materials. We also used natural language processing algorithms to understand students' responses. The app itself was developed using a web-based framework, providing an easy-to-use interface for students to access the practice materials and submit their answers. The AI system was trained using a large dataset of educational content to ensure that the generated materials are accurate and relevant.",
+    "Challenges we ran into": "During the development process, we faced various challenges. One major challenge was tweaking the AI model to understand and generate necessary formats for a wide range of school topics. Our team also unfortunately, decreased in number one possible teammate being unable to arrive, and teammate we found at the hackathon that had to leave 6 hours into the hackathon. We had initially had a completely different route and website idea, but after our teammate had left we decided to begin from scratch with the loss of 6 hours of potential work. We also had to ensure the accuracy of the grading system and provide meaningful feedback to students. Additionally, creating the AI system into a user-friendly app interface required careful design, development, and design.",
+    "Accomplishments that we're proud of": "As first-time hackathon participant, I are incredibly proud to have contributed to development of EduGuide. Our accomplishment lies in creating a tool that uses the power of AI technology to provide personalized practice materials and invaluable feedback to help you navigate the challenges and opportunities that a hackathon presents. EduGuide aims to empower students to learn at their own pace and provides them with a comprehensive learning resource across various school subjects.",
+    "What we learned": "Through building EduGuide, we learned about the power of AI in education and the importance of personalized learning experiences. We gained insights into training AI models for educational purposes and refining the system to deliver accurate and constructive feedback. User interface design also proved to be crucial in creating a platform that enhances the learning process. Actually using the website and brainstorming of the website taught us feedback is crucial to students and very beneficial towards learning and development.",
+    "What's next for EduGuide": "In the future, we have exciting plans to enhance EduGuide even further. Our primary focus will be on continuous improvement and expansion. We are look forward to update the AI model used in EduGuide, ensuring the generation of highly accurate and personalized practice materials for students. We believe that by improving the AI model, we can provide an even better learning experience to improve the student body, and benefit the teaching body.",
+    "Built With": "gpt\nnext\nnextjs\nnode.js\nreact",
+    "Try it out": "github.com",
+    "built_with": [
+      "gpt",
+      "next",
+      "nextjs",
+      "node.js",
+      "react"
+    ]
+  },
+  "sales-gpt": {
+    "title": null,
+    "Inspiration": "Last year, I ran my own MLH Hackathon called WWPHacks and had to create over 300 personalized messages for business owners to sponsor my hackathon. I remember thinking to myself how laborious this task must be for an actual sales team contacting over 1000+ customers every day. Soon later, all my friends started using this online chatbot called ChatGPT to finish their essays. Hence, our team came up with the idea of using GPT to automate the task of creating personalized messages to customers where we convert leads into sales.",
+    "What it does": "Sales GPT automates the grueling and laborious process sales teams have to endure when sending messages to customers/leads. Our app analyses the customer\u2019s behavior, interests, and preferences to craft messaging tailored to their individual needs by using OpenAI\u2019s GPT API. All the user has to do is connect our app to their LinkedIn sales navigator, Salesforce, Hubspot, or upload an Excel sheet file with their lead's information, and our app will return all the messages for each lead to the user!",
+    "How we built it": "Our web application\u2019s front end runs on the React.JS framework and was designed using Tailwind CSS. Our backend runs on Node.js and Express.js. We used OpenAIs GPT API in order to generate messaging that is not only personalized but also highly effective at converting leads into sales. We used MongoDB as our database where we stored user information, tokens, and the leads of that user.",
+    "Challenges we ran into": "In order to analyze a customer's behavior and interests, we need to be able to have real-time data, but GPT-3 runs on a model that uses data from 2021. GPT-4 and its plugins allow us to access the internet for real-time information that would help us craft more personalized messages. Since we didn\u2019t have access to the GPT-4 API, we decided to stick with GPT-3. Moreover, we had multiple errors in deploying our backend to Vercel due to some issues related to Express.js so we had to make a last-minute decision in deploying our backend to Heroku. We also didn't have time to integrate LinkedIn sales navigator, Salesforce, and HubSpot connection to our app.",
+    "Accomplishments that we're proud of": "We are very proud to have a working prototype in just 24 hours.",
+    "What we learned": "We learned how to use the gpt-3 API and gained much knowledge in gpt-4 and its plugins through research.",
+    "What's next for Sales GPT": "We are going to add more features to our current prototype such as an account sidebar which was included in our UI/UX design but not our actual app. We will also include a custom prompt option where the user can create their own custom prompt for GPT to generate a response for the user leads. Once we have access to GPT-4s API and its plugins, we will include it in our backend so that it can create personalized responses using real-time data from the internet and the customer's social media accounts. We also hope to elevate our prototype to the MVP stage for our potential beta customers.",
+    "Built With": "express.js\ngpt-3\nmongodb\nnode.js\nopenai\nreact.js",
+    "Try it out": "all-in-hacks-frontend.vercel.app\ngithub.com\ngithub.com",
+    "built_with": [
+      "express.js",
+      "gpt-3",
+      "mongodb",
+      "node.js",
+      "openai",
+      "react.js"
+    ]
+  },
+  "snake-cubed": {
+    "title": null,
+    "Inspiration": "We were inspired off of the original two-dimensional snake game, which is widely available from Google Doodle.",
+    "What it does": "We took the snake game\u2019s concept and translated it into a three-dimensional space and added easy-to-use controls for the user to play the game and eat apples to get a higher score. We also programmed an AI algorithm to efficiently play the game autonomously.",
+    "How we built it": "We built the app using HTML, CSS, DOM Javascript, and the P5.js framework to design three-dimensional canvases.",
+    "Challenges we ran into": "We ran into challenges when implementing the three-dimensional canvases using the P5.js framework, as we have never used this framework in a 3D project. We also ran into many problems when trying to implement the AI for playing the snake game, as the algorithm is very complex.",
+    "Accomplishments that we're proud of": "We are proud of the AI algorithm we designed and implemented into the web application. We are proud we were able to make this three-dimensional space and traverse through the dimensions using the javascript framework.",
+    "What we learned": "We learned how to use the P5.js framework, as we have never used this before.",
+    "Built With": "css\nhtml\njavascript\np5js\nreplit\nvercel",
+    "Try it out": "snakecubed.vercel.app\ngithub.com",
+    "built_with": [
+      "css",
+      "html",
+      "javascript",
+      "p5js",
+      "replit",
+      "vercel"
+    ]
+  },
+  "denote-c37tuz": {
+    "title": null,
+    "Inspiration": "Note taking as a dyslexic student is very difficult, but the Cornell note system is statistically the best note taking system to use. We did some further research about dyslexia with projects such as this site,\nlink\n, which simulates what someone with dyslexia sees. We also explored several studies reporting on dyslexia's effects on writing, which include poor handwriting, lack of organization, and poor spelling. Shocked at how little support for dyslexia current note taking apps seemed to have for such a widespread learning disability, we were inspired to combine the common educational app idea of the Cornell note-taking system with features targeted towards those with dyslexia.",
+    "What it does": "Our app has note editors for each subject that you want to include. The note editors have different sections that are included in the Cornell note taking system with a speech-to-text function for dyslexic students to take notes without fear of elligible handwriting.",
+    "How we built it": "We built it using React and Typescript in a Github repository.",
+    "Challenges we ran into": "At first, we used NextJS to write our web app, but we realized React was more fitting for this project, so we had to switch our codebase to React after 10 hours of the hackathon passed.",
+    "Accomplishments that we're proud of": "We are proud of the UI and design of our website, as it is very minimalistic and the color palette is consistent. We optimized the website's navigability, and symbols are large enough for dyslexic students to read accurately the first time.",
+    "What we learned": "We learned how to write note editor apps and storing the data in localStorage, and referencing back to localStorage when retrieving data.",
+    "What's next for DeNote": "For DeNote, we will add more tooling for dyslexic students built-in to our app, such as text-to-speech, image identifying, visual recognition tools/drawing functions to enhance active memorization, and better optimized organization, to further increase its usability and scalability.",
+    "Built With": "node.js\nreact\nreact-router\ntypescript",
+    "Try it out": "dnote.tech\ngithub.com",
+    "built_with": [
+      "node.js",
+      "react",
+      "react-router",
+      "typescript"
+    ]
+  },
+  "carduo": {
+    "title": null,
+    "Inspiration": "Many students today suffer from poor study habits due to a lack of awareness of effective techniques and a lack of discipline to commit to studying for prolonged periods of time. As students ourselves, we have always been adjusting our strategies for studying; but we wish tools like Quizlet or Anki would instill effective study habits in their programs and actively emphasize the importance of using effective techniques. We live in an era where everyone benefits from different learning styles- whether you\u2019re a middle school student or a graduate student, you will find this app makes the most efficient use of your time.",
+    "What it does": "As school becomes progressively difficult with grade level, students find it harder to manage their time and adopt study habits that ensure they succeed. Carduo is a program that allows students to develop productive study habits which implement scientifically proven techniques such as the Feynman Method and spaced repetition while making schoolwork fun.",
+    "How we built it": "We used MongoDB and NextJS for the backend and for user authentication, and Socket.io and simple-peer WebRTC for video implementation. For the frontend, we used TailwindCSS and NextJS for the styling, and React hooks for functionality.",
+    "Challenges we ran into": "Implementing WebRTC in ReactJS and eventually using a socket.io chat function due to time constraints.",
+    "What's next for Carduo": "Responsive layouts, video chat, create decks",
+    "Built With": "mongodb\nnext.js\nnode.js\nreact\nsocket.io\ntailwindcss\ntypescript",
+    "Try it out": "carduo.vercel.app\ngithub.com",
+    "built_with": [
+      "mongodb",
+      "next.js",
+      "node.js",
+      "react",
+      "socket.io",
+      "tailwindcss",
+      "typescript"
+    ]
+  }
+}
