@@ -9,7 +9,7 @@ const Header = () => {
         <div className="w-10 h-10 rounded-md bg-automate-purple flex items-center justify-center mr-3">
           <span className="font-bold text-white">AP</span>
         </div>
-        <h1 className="font-bold text-xl automate-gradient-text hidden md:block">AutoMate Pro</h1>
+        <h1 className="font-bold text-xl automate-gradient-text hidden md:block">Algora</h1>
       </div>
       
       <nav className="hidden md:flex items-center space-x-6">
@@ -26,7 +26,7 @@ const Header = () => {
         Menu
       </Button>
       
-      <span className="hidden md:block text-sm text-gray-400">Welcome to AutoMate Pro</span>
+      <span className="hidden md:block text-sm text-gray-400">Welcome to Algora</span>
     </header>
   );
 };

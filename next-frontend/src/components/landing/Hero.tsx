@@ -12,7 +12,7 @@ const Hero = () => {
       </div>
       
       <h1 className="text-4xl md:text-6xl font-bold text-center mb-6 z-10 max-w-4xl bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
-        Automate Your Workflow with AutoMate Pro
+        Automate Your Workflow with Algora
       </h1>
       
       <p className="text-xl text-gray-400 text-center mb-10 z-10 max-w-2xl">

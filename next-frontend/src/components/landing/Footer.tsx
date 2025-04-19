@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="w-8 h-8 rounded-md bg-automate-purple flex items-center justify-center mr-2">
             <span className="font-bold text-white text-sm">AP</span>
           </div>
-          <span className="font-bold">AutoMate Pro</span>
+          <span className="font-bold"><Algora></Algora></span>
         </div>
         
         <div className="flex space-x-6 text-sm">
@@ -18,7 +18,7 @@ const Footer = () => {
         </div>
         
         <div className="text-sm text-gray-400 mt-4 md:mt-0">
-          © 2025 AutoMate Pro. All rights reserved.
+          © 2025 <Algora></Algora>. All rights reserved.
         </div>
       </div>
       
